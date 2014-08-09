@@ -1,33 +1,22 @@
-pyalm
-=====
+# Slides for the Open Scholarship Tools a Whirlwind Tour talk at Wikimania 2014
 
-A Python Wrapper for the PLOS Article Level Metrics App API
------------------------------------------------------------
+The idea is to use some of the tools that we are actually going to talk about to create the presentation.
 
-The wrapper is based on the orcid-python wrapper by github users scholrly which can be
-found at https://github.com/scholrly/orcid-python.
+pip: http://pip.readthedocs.org/en/latest/installing.html
 
-Installation
-------------
-Clone the github repository to your local machine as desired and then run
+## Install IPython
+>
+$  pip install ipython[all]
 
-	python setup.py install 
-	
-or
+## Get this notebook
+>
+$ git clone this repo  
+$ cd into this repo
 
-	python setup.py develop
-	
-if you wish to work on the code.
+## Generating slides from the ipython notebook, and serving
+To generate html slides from the ipyton notebook, with ipython installed run
+>
+$ ipython nbconvert WikimaniaOpenScholarshipTalk.ipynb  --to slides --post serve
 
-To use the API you will need an api key. Look for the api_key.example.py file for 
-instructions on how to get an API key for the PLOS installation and where to put it.
-
-Testing and Contributions
--------------------------
-[![Build Status](https://travis-ci.org/cameronneylon/pyalm.png?branch=master)](https://travis-ci.org/cameronneylon/pyalm)
-[![Coverage Status](https://img.shields.io/coveralls/cameronneylon/pyalm.svg)](https://coveralls.io/r/cameronneylon/pyalm?branch=master)
-
-pyalm is currently tested via a small unittest suite and continuous integration via
-Travis-CI with tests run for Python 2.7. Feel free to fork and to issue a pull request 
-for any contributions and improvements (including getting it to pass tests under other
-Python versions).
+## tutorial on using iPython to build slides
+Have a look at [this presentation](http://damianavila.github.io/scipy2013_talks/index.html#/27/2) for an overview of what you can do.
