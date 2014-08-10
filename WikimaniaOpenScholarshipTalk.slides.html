@@ -16397,7 +16397,7 @@ In&nbsp;[2]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="how-to-get-started">how to get started</h1>
 <ul>
-<li>install git  </li>
+<li>install <a href="http://git-scm.com">git</a>  </li>
 <li>this talk is available in github, clone it and start playing around<br>  git clone git@github.com:IanMulvany/wikimania-open-scholarship-tools.git </li>
 </ul>
 </div>
@@ -16515,9 +16515,9 @@ In&nbsp;[12]:
 <h1 id="here-are-some-of-my-favourite-git-github-tips-and-tricks">here are some of my favourite git/github tips and tricks</h1>
 <ul>
 <li>use github for code review   </li>
-<li>when you send a pull request to a branch , up to thee point when that branch gets merged and of your commits that you push to your remote automatically turn up in the pull request, making this a fantastic workflow for discussing code</li>
+<li>when you send a pull request to a branch, up to the point when that branch gets merged, any of your commits that you push to your remote automatically turn up in the pull request, making this a fantastic workflow for discussing and reviewing code</li>
 <li>there is a magic tip to ignore white space when looking at diffs in github</li>
-<li>you can customise the bejasus out of your git terminal command line, I don&#39;t understand git well enough to figure out how to do this myself, but here are some that I like that <a href="http://partiallyattended.com/2014/08/09/git-command-line-shortcuts/">I have copied from t&#39;internet</a>.</li>
+<li>you can customise the bejasus out of your git terminal command line, I don&#39;t understand git well enough to figure out how to do this myself, but here are some that I like that <a href="http://partiallyattended.com/2014/08/09/git-command-line-shortcuts/">I have copied from t&#39;internet</a></li>
 </ul>
 </div>
 </div>
@@ -18642,7 +18642,7 @@ In&nbsp;[26]:
 </div>
 </div>
 
-</div></section><section>
+</div><aside class="notes">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -18677,7 +18677,8 @@ In&nbsp;[26]:
 <p><a href="https://github.com/jupyter/colaboratory/">https://github.com/jupyter/colaboratory/</a>  </p>
 </div>
 </div>
-</div></section>
+</div>
+    </aside></section>
     </section><section>
     <section>
     
@@ -18696,11 +18697,12 @@ In&nbsp;[26]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[23]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre><span class="c"># get recent DOIs deposited by PLOS using the CrosRef API</span>
+<span class="kn">import</span> <span class="nn">requests</span>  
 <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://api.crossref.org/members/340/works?filter=from-update-date:2014-07-21,until-update-date:2014-07-24&amp;rows=1000&quot;</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
@@ -18709,16 +18711,22 @@ In&nbsp;[23]:
 </div>
 </div>
 
-</div><div class="fragment">
+</div><div style=display:none>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[24]:
+In&nbsp;[16]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">crossref_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_dois_from_response</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">dois</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">crossref_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">pub_items</span> <span class="o">=</span> <span class="n">crossref_json</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">][</span><span class="s">&quot;items&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pub_items</span><span class="p">:</span>
+        <span class="n">dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;DOI&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">dois</span> 
 </pre></div>
 
 </div>
@@ -18731,14 +18739,202 @@ In&nbsp;[24]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[25]:
+In&nbsp;[17]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">pub_items</span> <span class="o">=</span> <span class="n">crossref_json</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">][</span><span class="s">&quot;items&quot;</span><span class="p">]</span>
-<span class="n">dois</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pub_items</span><span class="p">:</span>
-    <span class="n">dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;DOI&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span class="c"># extract the dois from the API response</span>
+<span class="n">dois</span> <span class="o">=</span> <span class="n">get_dois_from_response</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">dois</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[u&apos;10.1371/journal.pone.0102119.g004&apos;, u&apos;10.1371/journal.pone.0102130.s001&apos;, u&apos;10.1371/journal.pone.0102119.t001&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">return_parent_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">):</span>
+    <span class="c"># if the doi is a child doi, strip the tail, and return the parent</span>
+    <span class="n">doi_parts</span> <span class="o">=</span> <span class="n">doi</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+    <span class="n">main_doi</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doi_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">main_doi</span>    
+
+<span class="c"># chop off the child parts of our of our dois </span>
+<span class="k">def</span> <span class="nf">get_parent_dois</span><span class="p">(</span><span class="n">dois</span><span class="p">):</span>
+    <span class="n">parent_dois</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">:</span>
+        <span class="n">parent_dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_parent_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">parent_dois</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[19]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># just get the top level DOIS</span>
+<span class="n">parent_dois</span> <span class="o">=</span> <span class="n">get_parent_dois</span><span class="p">(</span><span class="n">dois</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">parent_dois</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[u&apos;10.1371/journal.pone.0102119&apos;, u&apos;10.1371/journal.pone.0102130&apos;, u&apos;10.1371/journal.pone.0102119&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[20]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># get a set of unique set of dois </span>
+<span class="k">def</span> <span class="nf">get_unique_dois</span><span class="p">(</span><span class="n">dois</span><span class="p">):</span>
+    <span class="n">unique_dois</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">unique_dois</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unique_dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unique_dois</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[21]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">unique_dois</span> <span class="o">=</span> <span class="n">get_unique_dois</span><span class="p">(</span><span class="n">parent_dois</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">unique_dois</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[u&apos;10.1371/journal.pone.0102119&apos;, u&apos;10.1371/journal.pone.0102130&apos;, u&apos;10.1371/journal.pone.0102076&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[22]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># now we import an interface to the PLOS ALM app </span>
+<span class="kn">import</span> <span class="nn">pyalm.pyalm</span> <span class="kn">as</span> <span class="nn">alm</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to get the PLOS alm api to work you need to register for an API key. You do this by creating an account at PLOS, and then logging in to <a href="alm.plos.org">alm.plos.org</a>. You then set the api key in the config file for pyalm, which is in <code>pyalm/api_key.py</code></p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[42]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">article_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">unique_dois</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doi</span><span class="p">),</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;summary&quot;</span><span class="p">)</span>
+        <span class="n">article_data</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;views&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s">&quot;citations&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">citations</span><span class="p">}</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;no data for &quot;</span><span class="p">,</span> <span class="n">doi</span> 
 </pre></div>
 
 </div>
@@ -18751,15 +18947,11 @@ In&nbsp;[25]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[26]:
+In&nbsp;[39]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">return_parent_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">):</span>
-    <span class="c"># if the doi is a child doi, strip the tail, and return the parent</span>
-    <span class="n">doi_parts</span> <span class="o">=</span> <span class="n">doi</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">main_doi</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doi_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">main_doi</span>    
+<div class="highlight"><pre><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span> 
 </pre></div>
 
 </div>
@@ -18772,14 +18964,88 @@ In&nbsp;[26]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[27]:
+In&nbsp;[61]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># chop off the child parts of our dois </span>
-<span class="n">parent_dois</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">:</span>
-    <span class="n">parent_dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_parent_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">))</span>
+<div class="highlight"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">article_data</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_views</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s">&quot;views&quot;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">get_cites</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s">&quot;citations&quot;</span><span class="p">]</span>
+<span class="n">all_views</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_views</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="n">all_cites</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_cites</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">all_views</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">all_cites</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[{&apos;citations&apos;: 0, &apos;views&apos;: 164}, {&apos;citations&apos;: 0, &apos;views&apos;: 415}, {&apos;citations&apos;: 0, &apos;views&apos;: 127}]
+[164, 415, 127]
+[0, 0, 0]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[40]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[54]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">n</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">23</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">78</span><span class="p">])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[64]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">pos</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_views</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -18792,20 +19058,134 @@ In&nbsp;[27]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[28]:
+In&nbsp;[67]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># get a set of unique set of dois </span>
-<span class="n">unique_dois</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">parent_dois</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">unique_dois</span><span class="p">:</span>
-        <span class="k">continue</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">unique_dois</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sorted_views</span> <span class="o">=</span> <span class="n">all_views</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="n">all_views</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[67]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+&lt;Container object of 118 artists&gt;
+</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+6P0/0NFdd/Hl8JUAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -18814,87 +19194,12 @@ In&nbsp;[28]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[29]:
+In&nbsp;[68]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_dois</span><span class="p">)</span>
-<span class="n">unique_dois</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-118
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[29]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-[u&apos;10.1371/journal.pone.0102119&apos;,
- u&apos;10.1371/journal.pone.0102130&apos;,
- u&apos;10.1371/journal.pone.0102076&apos;,
- u&apos;10.1371/journal.pone.0102261&apos;,
- u&apos;10.1371/journal.pone.0102088&apos;,
- u&apos;10.1371/journal.pone.0102115&apos;,
- u&apos;10.1371/journal.pone.0102376&apos;,
- u&apos;10.1371/journal.pone.0102173&apos;,
- u&apos;10.1371/journal.pone.0102380&apos;,
- u&apos;10.1371/journal.pone.0102451&apos;]
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[30]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pyalm.pyalm</span> <span class="kn">as</span> <span class="nn">alm</span>
-<span class="n">doi</span> <span class="o">=</span> <span class="s">&quot;10.1371/journal.pone.0102076&quot;</span>
-<span class="n">article</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;summary&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[31]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">views</span>
+<div class="highlight"><pre><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">all_cites</span><span class="p">,</span><span class="n">all_views</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -18906,234 +19211,138 @@ In&nbsp;[31]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[31]:</div>
+    Out[68]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-397
+&lt;matplotlib.collections.PathCollection at 0x10f3e8710&gt;
 </pre>
 </div>
 
 </div>
-
-</div>
-</div>
-
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[86]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">article_views</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">unique_dois</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">doi</span>
-        <span class="n">article</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doi</span><span class="p">),</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;summary&quot;</span><span class="p">)</span>
-        <span class="n">article_views</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">views</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;no data for &quot;</span><span class="p">,</span> <span class="n">doi</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-10.1371/journal.pone.0102119
-10.1371/journal.pone.0102130
-10.1371/journal.pone.0102076
-10.1371/journal.pone.0102261
-10.1371/journal.pone.0102088
-10.1371/journal.pone.0102115
-10.1371/journal.pone.0102376
-10.1371/journal.pone.0102173
-10.1371/journal.pone.0102380
-10.1371/journal.pone.0102451
-10.1371/journal.pone.0102469
-10.1371/journal.pone.0102509
-10.1371/journal.pone.0102555
-10.1371/journal.pone.0102580
-10.1371/journal.pone.0102599
-10.1371/journal.pone.0102656
-10.1371/journal.pone.0102657
-10.1371/journal.pone.0102668
-10.1371/journal.pone.0102674
-10.1371/journal.pone.0102675
-10.1371/journal.pone.0102682
-10.1371/journal.pone.0102694
-10.1371/journal.pone.0102730
-10.1371/journal.pone.0102737
-10.1371/journal.pone.0102771
-10.1371/journal.pone.0102774
-10.1371/journal.pone.0102794
-10.1371/journal.pone.0102821
-10.1371/journal.pone.0102822
-10.1371/journal.pone.0102866
-10.1371/journal.pone.0102908
-10.1371/journal.pone.0102919
-10.1371/journal.pone.0102937
-10.1371/journal.pone.0102953
-10.1371/journal.pone.0102971
-10.1371/journal.pone.0102982
-10.1371/journal.pone.0102991
-10.1371/journal.pone.0102996
-10.1371/journal.pone.0103000
-10.1371/journal.pone.0103004
-10.1371/journal.pone.0103014
-10.1371/journal.pone.0103037
-10.1371/journal.pone.0103049
-10.1371/journal.pone.0103056
-10.1371/journal.pone.0103058
-10.1371/journal.pone.0103063
-10.1371/journal.pone.0103075
-10.1371/journal.pone.0103128
-10.1371/journal.pone.0103131
-10.1371/journal.pone.0103185
-10.1371/journal.pone.0103230
-10.1371/journal.pone.0103273
-10.1371/journal.pone.0102763
-10.1371/journal.pone.0102782
-10.1371/journal.pone.0102786
-10.1371/journal.pone.0102807
-10.1371/journal.pone.0102868
-10.1371/journal.pone.0102872
-10.1371/journal.pone.0102918
-10.1371/journal.pone.0102920
-10.1371/journal.pone.0102940
-10.1371/journal.pone.0102948
-10.1371/journal.pone.0102959
-10.1371/journal.pone.0102979
-10.1371/journal.pone.0102993
-10.1371/journal.pone.0103001
-10.1371/journal.pone.0103021
-10.1371/journal.pone.0103051
-10.1371/journal.pone.0103062
-10.1371/journal.pone.0103112
-10.1371/journal.pone.0103142
-10.1371/journal.pone.0103232
-10.1371/journal.pone.0103240
-10.1371/journal.pone.0103261
-10.1371/journal.pone.0103276
-10.1371/journal.pone.0103279
-10.1371/journal.pone.0103289
-10.1371/journal.pone.0103300
-10.1371/journal.pone.0103306
-10.1371/journal.pone.0103317
-10.1371/journal.pone.0103324
-10.1371/journal.pone.0103432
-10.1371/journal.pone.0103438
-10.1371/journal.pone.0103613
-10.1371/journal.pone.0103803
-10.1371/journal.pone.0103870
-10.1371/journal.pone.0103906
-10.1371/journal.pone.0103907
-10.1371/journal.pone.0103911
-10.1371/journal.pone.0103912
-10.1371/journal.pone.0103913
-10.1371/journal.pone.0103923
-10.1371/journal.pone.0103925
-10.1371/journal.ppat.1004317
-10.1371/journal.ppat.1004318
-10.1371/journal.pone.0103919
-10.1371/journal.pone.0083100
-10.1371/journal.pone.0083569
-10.1371/journal.pone.0094597
-10.1371/journal.pone.0097061
-10.1371/journal.pone.0099441
-10.1371/journal.pone.0099516
-10.1371/journal.pone.0100646
-10.1371/journal.pone.0100875
-10.1371/journal.pone.0100885
-10.1371/journal.pone.0101161
-10.1371/journal.pone.0101185
-10.1371/journal.pone.0101280
-10.1371/journal.pone.0101297
-10.1371/journal.pone.0101552
-10.1371/journal.pone.0101595
-10.1371/journal.pone.0101605
-10.1371/journal.pone.0101638
-10.1371/journal.pone.0101801
-10.1371/journal.pone.0101831
-10.1371/journal.pone.0101863
-10.1371/journal.pone.0101885
-10.1371/journal.pone.0101892
 
-</pre>
-</div>
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+kiRJknQo+P9qdt4NKntJGAAAAABJRU5ErkJggg==
+"
+>
 </div>
 
 </div>
-</div>
 
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[90]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">keys</span> <span class="o">=</span> <span class="n">article_views</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]:</span> <span class="k">print</span> <span class="n">article_views</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-118
-159
-403
-124
-157
-182
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[22]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-</pre></div>
-
-</div>
 </div>
 </div>
 
