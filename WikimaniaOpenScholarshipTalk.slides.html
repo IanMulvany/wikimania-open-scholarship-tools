@@ -1781,7 +1781,7 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>DOI or DOI not -&gt; the inns and outs how to &quot;cite this&quot; in academia</li>
+<li>DOI or how to &quot;cite this&quot; in academia</li>
 </ul>
 </div>
 </div>
@@ -1834,7 +1834,7 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="dois">DOIs</h1>
+<h1 id="digital-object-identifiers-dois-">Digital object identifiers (DOIs)</h1>
 </div>
 </div>
 </div></section><section>
@@ -1844,7 +1844,60 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="insert-slides-on-doi-s-here-and-below">Insert slides on DOI&#39;s here, and below</h2>
+<h2 id="how-does-a-doi-look-like">How does a DOI look like</h2>
+<p><strong>10.x/y</strong> where x is 4-5 digits (and 10.x is the DOI prefix) and y (the suffix) can be anything.</p>
+<ul>
+<li><a href="http://dx.doi.org/10.5555/12345678">http://dx.doi.org/10.5555/12345678</a> or <strong>10.5555/12345678</strong></li>
+<li><a href="http://doi.org/hvx">http://doi.org/hvx</a> or <strong>10/hvx</strong></li>
+<li><a href="http://hdl.handle.net/10/hvx">http://hdl.handle.net/10/hvx</a></li>
+<li><a href="http://hdl.handle.net/1721.1/26698">http://hdl.handle.net/1721.1/26698</a> or <strong>1721.1/26698</strong></li>
+</ul>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="the-basics">The basics</h2>
+<ul>
+<li>DOIs are persistent identifiers: the idenfier is independent of the location, can be resolved, and the organization issueing the identifier guarantees its long-term availabibility</li>
+<li>DOIs have attached metadata</li>
+<li>DOIs support a centralized citation tracking service. A scholarly citation is basically <strong>persistent identifier (e.g. DOI)</strong> + <strong>metadata</strong> +  <strong>link a -&gt; b</strong></li>
+</ul>
+<p><a href="http://api.crossref.org/funders/10.13039/100000001/works?filter=license.url:http://creativecommons.org/licenses/by/3.0/deed.en_US">http://api.crossref.org/funders/10.13039/100000001/works?filter=license.url:http://creativecommons.org/licenses/by/3.0/deed.en_US</a></p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="some-things-you-might-not-have-known-not-every-doi-is-the-same-">Some things you might not have known: not every DOI is the same.</h2>
+<p>There are 9 different DOI registration agencies. Not all of them register scholarly content, e.g. the <a href="http://publications.europa.eu/index_en.htm">Publications Office of the European Union (OP)</a> and the <a href="http://www.eidr.org/">Entertainment Identifier Registry (EIDR)</a> do not. </p>
+<p>Different services can be built using DOIs, the reason the registration agency CrossRef was started was to facilitate citation linking between many publishers</p>
+<p>Some of the functionality is a service of the registration agency - metadata search for example is offered by CrossRef (<a href="http://search.crossref.org">http://search.crossref.org</a>) and DataCite (<a href="http://search.datacite.org">http://search.datacite.org</a>)</p>
+<p>To find out what registration agency registered a DOI, use <a href="http://api.crossref.org/works/10.6084/m9.figshare.821213/agency">http://api.crossref.org/works/10.6084/m9.figshare.821213/agency</a></p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="dois-are-urls">DOIs are URLs</h2>
+<p><a href="http://www.doi.org/faq.html">DOI names may be expressed as URLs (URIs) through a HTTP proxy server</a> - e.g. <a href="http://dx.doi.org/10.5555/12345679">http://dx.doi.org/10.5555/12345679 </a>, and this is how DOIs are typically resolved. Because DOIs can be expressed as URLs</p>
+<ul>
+<li>avoid special characters, e.g. as in this SICI DOI: <strong>10.4567/0361-9230(1997)42:<OaEoSR>2.0.TX;2-B</strong></li>
+<li><a href="http://www.crosscite.org/cn/">content negotiation</a> to get to the metadata instead of being forwarded to the resource</li>
+<li>fragment identifiers, e.g. <a href="http://dx.doi.org/10.1371/journal.pone.0103437#s2">http://dx.doi.org/10.1371/journal.pone.0103437#s2</a> or <a href="http://doi.org/10.5446/12780#t=00:20,00:27">http://doi.org/10.5446/12780#t=00:20,00:27</a></li>
+</ul>
 </div>
 </div>
 </div></section>
@@ -16375,7 +16428,7 @@ ESSiRI1JJ8ouDx9cSrchAI0gwSZZHGZaiJWlls7HdY9/X/XnB6kHMskUEnM//9k=
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[1]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -16424,7 +16477,7 @@ In&nbsp;[2]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -16441,7 +16494,7 @@ In&nbsp;[4]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
+    Out[2]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <iframe src="http://gitready.com" width=600 height=400></iframe>
@@ -16467,7 +16520,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -16484,7 +16537,7 @@ In&nbsp;[12]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[12]:</div>
+    Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <iframe src="https://mac.github.com" width=600 height=400></iframe>
@@ -16536,7 +16589,7 @@ In&nbsp;[12]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[14]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -16553,7 +16606,7 @@ In&nbsp;[14]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[14]:</div>
+    Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <iframe src="https://guides.github.com/activities/citable-code/" width=600 height=400></iframe>
@@ -18575,7 +18628,7 @@ oi4AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="visualisation">Visualisation</h1>
+<h1 id="visualisation-telling-stories-with-data">Visualisation - telling stories with data</h1>
 </div>
 </div>
 </div></section><section>
@@ -18585,7 +18638,60 @@ oi4AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="insert-slides-on-visualisation-here-and-below">Insert Slides on visualisation here and below</h2>
+<h2 id="learn-the-basics">Learn the Basics</h2>
+<p>Work on visualization of scientific data should start with a good understanding of the best practices and pitfalls of data visualization in general, as well as the specific aspects of visualizing scientific data.</p>
+<ul>
+<li><a href="http://book.flowingdata.com/">Visualize this</a> - book on chart types, tools and tricks</li>
+<li><a href="https://github.com/mbostock/d3/wiki/Gallery">D3 Gallery</a> - Examples</li>
+<li><a href="http://docs.ggplot2.org/current/index.html">ggplot2</a> - the grammar of graphics, and an implementation in R</li>
+</ul>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="learn-to-use-at-least-one-visualization-tool">Learn to use at least one visualization tool</h2>
+<p>Excel, <a href="http://www.rstudio.com/">R</a>, <a href="http://d3js.org/">d3.js</a>, <a href="https://datawrapper.de/">Datawrapper</a>, <a href="http://www.graphpad.com/scientific-software/prism/">Prism</a>, ...</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="learn-data-analysis">Learn data analysis</h2>
+<p>You need to know at least the basics of data analysis to do proper data visualizations, e.g. how to handle wrongly formatted data (e.g. text in a number column), missing values and outliers. </p>
+<p>Data analysis becomes much easier with a dedicated data analysis language such as R, Python or Julia</p>
+<p>The most time-consuming step in my experience is <strong>data transformation</strong>, i.e. bringing data into the format that you want for the analysis and visualization.</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="use-a-vector-file-format">Use a vector file format</h2>
+<p>Bitmap graphic formats such as <code>tiff</code>, <code>jpg</code> and <code>png</code> are not appropriate for charts. Use vector formats such as <code>svg</code> or <code>pdf</code>, and make the data underlying the figure available.</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="get-inspired-by-great-visualizations">Get inspired by great visualizations</h2>
+<p>We should become more creative with visualizing data in scholarly documents. These graphs often focus too much on detail rather than the overall message, don&#39;t take advantage of the different chart types available, and are sometimes even misleading</p>
+<p>One important step towards that goal is publishers accepting more reasonable file formats for figures coming with submitted manuscript - instead of just <code>tiff</code> and <code>eps</code>, and with a 10 MB file size limit. </p>
 </div>
 </div>
 </div></section>
@@ -18615,7 +18721,7 @@ oi4AAAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[26]:
+In&nbsp;[5]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18631,7 +18737,7 @@ In&nbsp;[26]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[26]:</div>
+    Out[5]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <iframe src="http://ipython.org/notebook.html" width=600 height=400></iframe>
@@ -18697,7 +18803,7 @@ In&nbsp;[26]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[7]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18716,7 +18822,7 @@ In&nbsp;[3]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[16]:
+In&nbsp;[10]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18739,7 +18845,7 @@ In&nbsp;[16]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[17]:
+In&nbsp;[11]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18774,7 +18880,7 @@ In&nbsp;[17]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[18]:
+In&nbsp;[12]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18802,7 +18908,7 @@ In&nbsp;[18]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[19]:
+In&nbsp;[13]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18837,7 +18943,7 @@ In&nbsp;[19]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[20]:
+In&nbsp;[14]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18862,7 +18968,7 @@ In&nbsp;[20]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[21]:
+In&nbsp;[15]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18896,7 +19002,7 @@ In&nbsp;[21]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[22]:
+In&nbsp;[16]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18919,12 +19025,62 @@ In&nbsp;[22]:
 </div>
 </div>
 </div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">test_article</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">unique_dois</span><span class="p">[</span><span class="mi">12</span><span class="p">]),</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;event&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s">&quot;mendeley&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[33]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">test_article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s">&quot;mendeley&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">total</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+2
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
     </div><div class="fragment">
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[42]:
+In&nbsp;[34]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18932,7 +19088,9 @@ In&nbsp;[42]:
 <span class="k">for</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">unique_dois</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">article</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doi</span><span class="p">),</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;summary&quot;</span><span class="p">)</span>
-        <span class="n">article_data</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;views&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s">&quot;citations&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">citations</span><span class="p">}</span>
+        <span class="n">article_mendeley</span> <span class="o">=</span> <span class="n">alm</span><span class="o">.</span><span class="n">get_alm</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doi</span><span class="p">),</span> <span class="n">info</span><span class="o">=</span><span class="s">&quot;event&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s">&quot;mendeley&quot;</span><span class="p">)</span>
+        <span class="n">mendeley_metrics</span> <span class="o">=</span> <span class="n">article_mendeley</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s">&quot;mendeley&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">total</span>
+        <span class="n">article_data</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;views&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s">&quot;citations&quot;</span><span class="p">:</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">citations</span><span class="p">,</span> <span class="s">&quot;mendeley&quot;</span><span class="p">:</span> <span class="n">mendeley_metrics</span><span class="p">}</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;no data for &quot;</span><span class="p">,</span> <span class="n">doi</span> 
 </pre></div>
@@ -18947,7 +19105,7 @@ In&nbsp;[42]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[39]:
+In&nbsp;[41]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -18964,18 +19122,21 @@ In&nbsp;[39]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[61]:
+In&nbsp;[36]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">article_data</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">get_views</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s">&quot;views&quot;</span><span class="p">]</span>
 <span class="k">def</span> <span class="nf">get_cites</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s">&quot;citations&quot;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">get_mendeley</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s">&quot;mendeley&quot;</span><span class="p">]</span>
 <span class="n">all_views</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_views</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="n">all_cites</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_cites</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="n">all_mendeley</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_mendeley</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="k">print</span> <span class="n">all_views</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="k">print</span> <span class="n">all_cites</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">all_mendeley</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -18989,9 +19150,10 @@ In&nbsp;[61]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-[{&apos;citations&apos;: 0, &apos;views&apos;: 164}, {&apos;citations&apos;: 0, &apos;views&apos;: 415}, {&apos;citations&apos;: 0, &apos;views&apos;: 127}]
+[{&apos;mendeley&apos;: 0, &apos;citations&apos;: 0, &apos;views&apos;: 164}, {&apos;mendeley&apos;: 1, &apos;citations&apos;: 0, &apos;views&apos;: 415}, {&apos;mendeley&apos;: 0, &apos;citations&apos;: 0, &apos;views&apos;: 127}]
 [164, 415, 127]
 [0, 0, 0]
+[0, 1, 0]
 
 </pre>
 </div>
@@ -19006,7 +19168,7 @@ In&nbsp;[61]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[40]:
+In&nbsp;[37]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19023,7 +19185,7 @@ In&nbsp;[40]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[54]:
+In&nbsp;[38]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19041,7 +19203,7 @@ In&nbsp;[54]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[64]:
+In&nbsp;[39]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19058,7 +19220,7 @@ In&nbsp;[64]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[67]:
+In&nbsp;[42]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19076,7 +19238,7 @@ In&nbsp;[67]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[67]:</div>
+    Out[42]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -19194,7 +19356,7 @@ l4Rw/2OO3p+7COeabuDKcW3p6Azu302Ey1jfp3x+WZXZv9n6J0mSJEmSJEmSJEmSJEmSJEmSJEnS
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[68]:
+In&nbsp;[43]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -19211,12 +19373,12 @@ In&nbsp;[68]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[68]:</div>
+    Out[43]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-&lt;matplotlib.collections.PathCollection at 0x10f3e8710&gt;
+&lt;matplotlib.collections.PathCollection at 0x112932250&gt;
 </pre>
 </div>
 
@@ -19346,6 +19508,218 @@ kiRJknQo+P9qdt4NKntJGAAAAABJRU5ErkJggg==
 </div>
 </div>
 
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[45]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">all_mendeley</span><span class="p">,</span><span class="n">all_views</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[45]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+&lt;matplotlib.collections.PathCollection at 0x10d390790&gt;
+</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+gg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;iframe src=&quot;http://londonopendrinks.org&quot; width=600 height=400&gt;&lt;/iframe&gt;&#39;</span><span class="p">)</span> 
+<span class="c"># http://londonopendrinks.org </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[9]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<iframe src="http://londonopendrinks.org" width=600 height=400></iframe>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div><aside class="notes">
     
 <div class="cell border-box-sizing text_cell rendered">
@@ -19356,17 +19730,32 @@ kiRJknQo+P9qdt4NKntJGAAAAABJRU5ErkJggg==
 <h1 id="things-to-do-to-finish-this-presentation">Things to do to finish this presentation</h1>
 <ul>
 <li>pull in other github example sites and documentation  @done </li>
-<li>show example command line customisations  </li>
+<li>show example command line customisations  - pointed to @doen </li>
 <li>pull in notes from my phone on github  @done </li>
-<li>pull in secondary data on DOIs based on call to DOIs that I have in this presentation  </li>
+<li>pull in secondary data on DOIs based on call to DOIs that I have in this presentation  @done</li>
 <li>turn these slides into PDF  </li>
-<li>make a simple graph based on the data that I have pulled in to this presentation  </li>
-<li>integrate Martin&#39;s slides into this presentation, if I can?  </li>
+<li>make a simple graph based on the data that I have pulled in to this presentation  @done</li>
+<li>integrate Martin&#39;s slides into this presentation, if I can?  @done</li>
 </ul>
 </div>
 </div>
 </div>
-    </aside></section>
+    </aside>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section>
     </section>
 </div>
 </div>
